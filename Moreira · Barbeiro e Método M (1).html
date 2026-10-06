@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Moreira · Barbeiro e Método M</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Poppins:wght@300;400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --k: #000;
+      --w: #fff;
+      --g: #666;
+      --l: #CFCFCF;
+      --t: 'Barlow Condensed', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+      --b: Helvetica, 'Liberation Sans', Arial, sans-serif;
+      --p: 'Poppins', Helvetica, Arial, sans-serif;
+      --pad: 22px;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 60px;
+      -webkit-text-size-adjust: 100%
+    }
+
+    body {
+      margin: 0;
+      background: var(--k);
+      color: var(--w);
+      font-family: var(--b);
+      line-height: 1.6;
+      font-size: 16px;
+      padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px))
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent
+    }
+
+    p {
+      margin: 0;
+      color: var(--l)
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--pad)
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--t);
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: .92;
+      margin: 0
+    }
+
+    h1 {
+      font-size: clamp(88px, 27vw, 230px)
+    }
+
+    h2 {
+      font-size: clamp(46px, 14vw, 92px)
+    }
+
+    h3 {
+      font-size: 34px
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--l);
+      margin-bottom: 18px
+    }
+
+    section {
+      padding: 72px 0;
+      border-top: 1px solid #222
+    }
+
+    .wm {
+      font-family: var(--p);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: 13px;
+      white-space: nowrap
+    }
+
+    .wm b {
+      font-weight: 400
+    }
+
+    .wm i {
+      font-style: normal;
+      font-weight: 300
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      padding-top: env(safe-area-inset-top, 0px);
+      background: rgba(0, 0, 0, .72);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px)
+    }
+
+    .bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      gap: 16px
+    }
+
+    .bar nav,
+    .bar .btn {
+      display: none
+    }
+
+    .btn {
+      display: block;
+      text-align: center;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      padding: 19px 24px;
+      border: 1px solid var(--w);
+      background: var(--w);
+      color: var(--k);
+      transition: background .3s, color .3s
+    }
+
+    .btn:active,
+    .btn:hover {
+      background: var(--k);
+      color: var(--w)
+    }
+
+    .btn.o {
+      background: transparent;
+      color: var(--w)
+    }
+
+    .btn.o:active,
+    .btn.o:hover {
+      background: var(--w);
+      color: var(--k)
+    }
+
+    /* hero com vídeo */
+    .hero {
+      position: relative;
+      border-top: 0;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 96px 0 28px;
+      overflow: hidden
+    }
+
+    .hero video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .veil {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, .5)
+    }
+
+    .hero .wrap {
+      position: relative;
+      width: 100%
+    }
+
+    .hero .sub {
+      font-size: 17px;
+      max-width: 420px;
+      margin: 20px 0 36px;
+      color: var(--w)
+    }
+
+    .two {
+      border-top: 1px solid rgba(255, 255, 255, .4)
+    }
+
+    .two a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .4);
+      background: rgba(0, 0, 0, .35);
+      transition: padding .3s
+    }
+
+    .two a:active {
+      padding-left: 10px
+    }
+
+    .two small {
+      display: block;
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--l);
+      line-height: 1.3
+    }
+
+    .two .ar {
+      font-size: 22px
+    }
+
+    /* mídia */
+    .media {
+      position: relative;
+      background: #0b0b0b;
+      border: 1px solid #222;
+      overflow: hidden
+    }
+
+    .media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .media .ph {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--g)
+    }
+
+    .r45 {
+      aspect-ratio: 4/5
+    }
+
+    .r43 {
+      aspect-ratio: 4/3
+    }
+
+    /* história */
+    .story {
+      display: grid;
+      gap: 36px
+    }
+
+    .story .txt p {
+      font-size: 18px;
+      line-height: 1.7
+    }
+
+    .story .txt p+p {
+      margin-top: 20px
+    }
+
+    .story .txt h2 {
+      margin-bottom: 28px
+    }
+
+    .cap {
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--g);
+      margin-top: 10px
+    }
+
+    .story .b {
+      margin-top: 8px
+    }
+
+    /* método */
+    .m .lead {
+      font-size: 18px;
+      margin: 26px 0 32px
+    }
+
+    .pts {
+      list-style: none;
+      margin: 0 0 36px;
+      padding: 0;
+      border-top: 1px solid #333
+    }
+
+    .pts li {
+      padding: 16px 0;
+      border-bottom: 1px solid #333;
+      font-size: 15px;
+      color: var(--l);
+      display: flex;
+      gap: 18px
+    }
+
+    .pts li span {
+      color: var(--g);
+      font-size: 12px;
+      letter-spacing: .2em;
+      padding-top: 3px
+    }
+
+    .bigm {
+      display: none
+    }
+
+    .cta h2 {
+      font-size: clamp(54px, 17vw, 130px);
+      margin-bottom: 36px
+    }
+
+    .cta .row {
+      display: grid;
+      gap: 12px
+    }
+
+    footer {
+      border-top: 1px solid #222;
+      padding: 40px 0
+    }
+
+    .f {
+      display: grid;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--g)
+    }
+
+    .f a {
+      color: var(--l)
+    }
+
+    .dock {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 25;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 10px var(--pad) calc(10px + env(safe-area-inset-bottom, 0px));
+      background: var(--k);
+      border-top: 1px solid #333;
+      transform: translateY(110%);
+      transition: transform .4s ease
+    }
+
+    .dock.show {
+      transform: none
+    }
+
+    .dock .btn {
+      padding: 16px 6px
+    }
+
+    .rv {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .8s ease, transform .8s ease
+    }
+
+    .rv.in {
+      opacity: 1;
+      transform: none
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      .rv {
+        opacity: 1;
+        transform: none;
+        transition: none
+      }
+
+      html {
+        scroll-behavior: auto
+      }
+
+      .dock {
+        transition: none
+      }
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--l);
+      outline-offset: 3px
+    }
+
+    /* tablet e desktop */
+    @media (min-width:860px) {
+      :root {
+        --pad: clamp(32px, 5vw, 72px)
+      }
+
+      body {
+        font-size: 17px;
+        padding-bottom: 0
+      }
+
+      section {
+        padding: 140px 0
+      }
+
+      .bar {
+        height: 68px
+      }
+
+      .bar nav {
+        display: block
+      }
+
+      .bar nav a {
+        font-size: 12px;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        margin-right: 28px
+      }
+
+      .bar .btn {
+        display: inline-block;
+        padding: 11px 20px
+      }
+
+      header {
+        position: fixed
+      }
+
+      .hero {
+        padding-bottom: 56px
+      }
+
+      .two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0
+      }
+
+      .two a {
+        padding: 28px;
+        border-bottom: 1px solid rgba(255, 255, 255, .4)
+      }
+
+      .two a+a {
+        border-left: 1px solid rgba(255, 255, 255, .4)
+      }
+
+      .two a:hover {
+        background: var(--w);
+        color: var(--k)
+      }
+
+      .two a:hover small {
+        color: #333
+      }
+
+      .story {
+        grid-template-columns: 5fr 6fr;
+        gap: 96px;
+        align-items: start
+      }
+
+      .m {
+        display: grid;
+        grid-template-columns: 7fr 5fr;
+        gap: 96px;
+        align-items: end
+      }
+
+      .m .btn {
+        display: inline-block
+      }
+
+      .bigm {
+        display: block;
+        font-family: var(--t);
+        font-weight: 800;
+        font-size: clamp(220px, 28vw, 380px);
+        line-height: .75;
+        text-align: right
+      }
+
+      .cta .row {
+        display: flex
+      }
+
+      .cta .btn {
+        display: inline-block
+      }
+
+      .f {
+        grid-template-columns: 1fr auto auto;
+        align-items: center
+      }
+
+      .dock {
+        display: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="wrap bar">
+      <a href="#topo" class="wm" aria-label="Moreira Education"><b>MOR</b><i>EIRA EDUCATION</i></a>
+      <nav aria-label="Principal"><a href="#historia">História</a><a href="#metodo">Método M</a></nav>
+      <a class="btn" data-link="agenda" href="#">Agendar</a>
+    </div>
+  </header>
+
+  <main id="topo">
+    <section class="hero" id="hero">
+      <div id="vid"></div>
+      <div class="veil"></div>
+      <div class="wrap">
+        <p class="eyebrow rv">Barbeiro · Educador</p>
+        <h1 class="rv">Moreira</h1>
+        <p class="sub rv">Corte, técnica e método. Agende seu horário ou aprenda a profissão com o Método M.</p>
+        <div class="two rv">
+          <a data-link="agenda" href="#"><span>
+              <h3>Agendar horário</h3><small>Escolha dia e hora na agenda</small>
+            </span><span class="ar">→</span></a>
+          <a data-link="curso" href="#metodo"><span>
+              <h3>Método M · O curso</h3><small>Conheça e saiba como funciona</small>
+            </span><span class="ar">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="historia">
+      <div class="wrap story">
+        <div class="a rv">
+          <div class="media r45" data-slot="moreira"><span class="ph">Foto do Moreira</span></div>
+        </div>
+        <div class="txt rv">
+          <p class="eyebrow">A história</p>
+          <h2>Como tudo começou</h2>
+          <p>Aqui entra a história do Moreira: como a barbearia começou, o que o move e o que ele aprendeu em cada
+            cadeira.</p>
+          <p>Um texto curto e direto, do jeito dele falar. O suficiente para o cliente conhecer quem está do outro lado
+            da navalha.</p>
+          <div class="b">
+            <div class="media r43" data-slot="barbearia" style="margin-top:32px"><span class="ph">Foto da
+                barbearia</span></div>
+            <p class="cap">A barbearia hoje</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="metodo">
+      <div class="wrap m">
+        <div>
+          <p class="eyebrow rv">O curso</p>
+          <h2 class="rv">Método M</h2>
+          <p class="lead rv">O passo a passo que o Moreira usa na cadeira, organizado para você aprender com clareza e
+            aplicar desde o primeiro dia.</p>
+          <ul class="pts rv">
+            <li><span>01</span>Técnica explicada de forma simples</li>
+            <li><span>02</span>Do básico ao atendimento completo</li>
+            <li><span>03</span>Feito por quem vive a profissão</li>
+          </ul>
+          <a class="btn rv" data-link="curso" href="#">Saiba mais sobre o curso</a>
+        </div>
+        <div class="bigm rv" aria-hidden="true">M</div>
+      </div>
+    </section>
+
+    <section class="cta" id="fim">
+      <div class="wrap">
+        <h2 class="rv">Pronto<br>pra começar?</h2>
+        <div class="row rv">
+          <a class="btn" data-link="agenda" href="#">Agendar horário</a>
+          <a class="btn o" data-link="curso" href="#">Conhecer o Método M</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap f">
+      <span class="wm" style="color:var(--w)"><b>MOR</b><i>EIRA EDUCATION</i></span>
+      <span><a href="#">Instagram</a> &nbsp;·&nbsp; <a href="#">WhatsApp</a></span>
+      <span>© 2026 Moreira Education</span>
+    </div>
+  </footer>
+
+  <div class="dock" id="dock">
+    <a class="btn" data-link="agenda" href="#">Agendar</a>
+    <a class="btn o" data-link="curso" href="#">Método M</a>
+  </div>
+
+  <script>
+    // ===== EDITE AQUI =====
+    var LINK_AGENDA = "#";   // link da agenda do Moreira
+    var LINK_CURSO = "#";   // página de venda do curso Método M
+    var MEDIA = {
+      video: "",      // vídeo curto do hero (sem som, em loop)
+      poster: "",     // imagem de capa do vídeo
+      moreira: "",    // foto do Moreira
+      barbearia: ""   // foto da barbearia
+    };
+    // ======================
+    document.querySelectorAll('[data-link]').forEach(function (a) {
+      var u = a.dataset.link === 'agenda' ? LINK_AGENDA : LINK_CURSO;
+      if (u !== "#") {a.href = u; a.target = "_blank"; a.rel = "noopener"}
+      else if (a.dataset.link === 'curso') {a.href = "#metodo"}
+    });
+    if (MEDIA.video) {
+      var v = document.createElement('video');
+      v.src = MEDIA.video; if (MEDIA.poster) v.poster = MEDIA.poster;
+      v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('aria-hidden', 'true');
+      document.getElementById('vid').appendChild(v);
+      var p = v.play(); if (p && p.catch) p.catch(function () { });
+    }
+    document.querySelectorAll('[data-slot]').forEach(function (el) {
+      var s = MEDIA[el.dataset.slot];
+      if (s) {var i = new Image(); i.src = s; i.alt = el.dataset.slot === 'moreira' ? 'Moreira' : 'Barbearia do Moreira'; i.loading = 'lazy'; el.innerHTML = ''; el.appendChild(i)}
+    });
+    var dock = document.getElementById('dock');
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) {dock.classList.toggle('show', !e[0].isIntersecting)}, {threshold: .6}).observe(document.getElementById('hero'));
+      var els = document.querySelectorAll('.rv');
+      var io = new IntersectionObserver(function (e) {e.forEach(function (x) {if (x.isIntersecting) {x.target.classList.add('in'); io.unobserve(x.target)} })}, {threshold: .1});
+      els.forEach(function (e) {io.observe(e)});
+    } else {dock.classList.add('show'); document.querySelectorAll('.rv').forEach(function (e) {e.classList.add('in')})}
+  </script>
+</body>
+
+</html>
