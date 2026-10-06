@@ -1,26 +1,58 @@
+/* =========================================================
+   MOREIRA · Barbeiro e Método M
+   Mobile primeiro. Desktop a partir de 860px (bloco no fim).
+
+   ÍNDICE
+   1. Variáveis e base
+   2. Tipografia
+   3. Layout
+   4. Componentes (logo, botões, ícones)
+   5. Header
+   6. Hero
+   7. Mídia (fotos e vídeo)
+   8. Citação
+   9. História
+   10. Método M
+   11. CTA final
+   12. Footer
+   13. Barra fixa do celular (dock)
+   14. Animação de entrada (.rv)
+   15. Acessibilidade
+   16. Desktop (min-width: 860px)
+   17. Opcional: foto no hero
+   ========================================================= */
+
+
+/* 1. VARIÁVEIS E BASE
+   ========================================================= */
 :root {
-    --k: #000000;
+    --k: #000;
     --w: #fff;
     --g: #666;
     --l: #CFCFCF;
+    --line: #222;
+
     --t: 'Barlow Condensed', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
     --b: Helvetica, 'Liberation Sans', Arial, sans-serif;
     --p: 'Poppins', Helvetica, Arial, sans-serif;
+    --q: 'Playfair Display', Georgia, 'Times New Roman', serif;
+
     --pad: 22px;
+
     box-sizing: border-box;
-    padding-top: env(safe-area-inset-top, 0px)
+    padding-top: env(safe-area-inset-top, 0px);
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: inherit
+    box-sizing: inherit;
 }
 
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 60px;
-    -webkit-text-size-adjust: 100%
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -28,28 +60,27 @@ body {
     background: var(--k);
     color: var(--w);
     font-family: var(--b);
-    line-height: 1.6;
     font-size: 16px;
-    padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px))
+    line-height: 1.6;
+    padding-bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+    overflow-x: clip;
+    /* evita rolagem lateral enquanto os .rv ainda estão deslocados */
 }
 
 a {
     color: inherit;
     text-decoration: none;
-    -webkit-tap-highlight-color: transparent
+    -webkit-tap-highlight-color: transparent;
 }
 
 p {
     margin: 0;
-    color: var(--l)
+    color: var(--l);
 }
 
-.wrap {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--pad)
-}
 
+/* 2. TIPOGRAFIA
+   ========================================================= */
 h1,
 h2,
 h3 {
@@ -57,19 +88,19 @@ h3 {
     font-weight: 800;
     text-transform: uppercase;
     line-height: .92;
-    margin: 0
+    margin: 0;
 }
 
 h1 {
-    font-size: clamp(88px, 27vw, 230px)
+    font-size: clamp(88px, 27vw, 230px);
 }
 
 h2 {
-    font-size: clamp(46px, 14vw, 92px)
+    font-size: clamp(46px, 14vw, 92px);
 }
 
 h3 {
-    font-size: 34px
+    font-size: 34px;
 }
 
 .eyebrow {
@@ -77,56 +108,46 @@ h3 {
     letter-spacing: .24em;
     text-transform: uppercase;
     color: var(--l);
-    margin-bottom: 18px
+    margin-bottom: 18px;
+}
+
+
+/* 3. LAYOUT
+   ========================================================= */
+.wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--pad);
 }
 
 section {
     padding: 72px 0;
-    border-top: 1px solid #2422
+    border-top: 1px solid var(--line);
 }
 
+
+/* 4. COMPONENTES
+   ========================================================= */
+
+/* Logo em texto */
 .wm {
     font-family: var(--p);
     text-transform: uppercase;
     letter-spacing: .14em;
     font-size: 13px;
-    white-space: nowrap
+    white-space: nowrap;
 }
 
 .wm b {
-    font-weight: 400
+    font-weight: 400;
 }
 
 .wm i {
     font-style: normal;
-    font-weight: 300
+    font-weight: 300;
 }
 
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 20;
-    padding-top: env(safe-area-inset-top, 0px);
-    background: rgba(0, 0, 0, .72);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px)
-}
-
-.bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 56px;
-    gap: 16px
-}
-
-.bar nav,
-.bar .btn {
-    display: none
-}
-
+/* Botões */
 .btn {
     display: block;
     text-align: center;
@@ -137,7 +158,7 @@ header {
     border: 1px solid var(--w);
     background: var(--w);
     color: var(--k);
-    transition: background .3s, color .3s
+    transition: background .3s, color .3s;
 }
 
 .btn:active,
@@ -148,16 +169,61 @@ header {
 
 .btn.o {
     background: transparent;
-    color: var(--w)
+    color: var(--w);
 }
 
 .btn.o:active,
 .btn.o:hover {
     background: var(--w);
-    color: var(--k)
+    color: var(--k);
 }
 
-/* hero com vídeo */
+/* Ícones (Material Symbols). Precisa do <link> da fonte no <head> */
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    display: inline-block;
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+
+/* 5. HEADER
+   ========================================================= */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: rgba(0, 0, 0, .72);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    gap: 16px;
+}
+
+.bar nav,
+.bar .btn {
+    display: none;
+}
+
+/* no celular só aparece o logo */
+
+
+/* 6. HERO
+   ========================================================= */
 .hero {
     position: relative;
     border-top: 0;
@@ -166,7 +232,7 @@ header {
     flex-direction: column;
     justify-content: flex-end;
     padding: 96px 0 28px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .hero video {
@@ -174,29 +240,45 @@ header {
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover
+    object-fit: cover;
 }
 
 .veil {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, .5)
+    background: rgba(0, 0, 0, .5);
 }
 
 .hero .wrap {
     position: relative;
-    width: 100%
+    width: 100%;
+}
+
+.hero-top {
+    position: relative;
+    min-height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
 }
 
 .hero .sub {
+    display: none;
+    /* no celular os botões já dizem o mesmo */
     font-size: 17px;
     max-width: 420px;
     margin: 20px 0 36px;
-    color: var(--w)
+    color: var(--w);
 }
 
+/* Botões grandes: agenda e curso */
 .two {
-    border-top: 1px solid rgba(255, 255, 255, .4)
+    border-top: 1px solid rgba(255, 255, 255, .4);
 }
 
 .two a {
@@ -207,11 +289,11 @@ header {
     padding: 22px 0;
     border-bottom: 1px solid rgba(255, 255, 255, .4);
     background: rgba(0, 0, 0, .35);
-    transition: padding .3s
+    transition: padding .3s, background .4s, color .4s;
 }
 
 .two a:active {
-    padding-left: 10px
+    padding-left: 10px;
 }
 
 .two small {
@@ -219,27 +301,32 @@ header {
     margin-top: 6px;
     font-size: 13px;
     color: var(--l);
-    line-height: 1.3
+    line-height: 1.3;
+    transition: color .4s;
 }
 
 .two .ar {
-    font-size: 22px
+    display: inline-block;
+    /* necessário para o rotate funcionar */
+    font-size: 22px;
+    transition: transform .4s;
 }
 
 
-/* mídia */
+/* 7. MÍDIA
+   ========================================================= */
 .media {
     position: relative;
     background: #0b0b0b;
-    border: 1px solid #222;
-    overflow: hidden
+    border: 1px solid var(--line);
+    overflow: hidden;
 }
 
 .media img {
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover
+    object-fit: cover;
 }
 
 .media .ph {
@@ -253,34 +340,85 @@ header {
     font-size: 11px;
     letter-spacing: .2em;
     text-transform: uppercase;
-    color: var(--g)
+    color: var(--g);
 }
 
 .r45 {
-    aspect-ratio: 4/5
+    aspect-ratio: 4 / 5;
 }
 
 .r43 {
-    aspect-ratio: 4/3
+    aspect-ratio: 4 / 3;
 }
 
-/* história */
+
+/* 8. CITAÇÃO
+   ========================================================= */
+.citacao {
+    padding: 56px 0;
+}
+
+.quote {
+    position: relative;
+    max-width: 680px;
+    margin: 0 auto;
+    padding-top: 52px;
+    text-align: center;
+}
+
+.quote::before {
+    content: "\201C";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--q);
+    font-weight: 400;
+    font-size: 88px;
+    line-height: 1;
+    color: var(--g);
+}
+
+.quote p {
+    font-family: var(--q);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(22px, 5.5vw, 30px);
+    line-height: 1.45;
+    color: var(--w);
+}
+
+.quote footer {
+    margin-top: 22px;
+    font-size: 11px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--g);
+}
+
+
+/* 9. HISTÓRIA
+   ========================================================= */
 .story {
     display: grid;
-    gap: 36px
+    gap: 36px;
+}
+
+.story .txt h2 {
+    margin-bottom: 28px;
 }
 
 .story .txt p {
     font-size: 18px;
-    line-height: 1.7
+    line-height: 1.7;
 }
 
 .story .txt p+p {
-    margin-top: 20px
+    margin-top: 20px;
 }
 
-.story .txt h2 {
-    margin-bottom: 28px
+.story .b {
+    margin-top: 8px;
 }
 
 .cap {
@@ -288,72 +426,111 @@ header {
     letter-spacing: .2em;
     text-transform: uppercase;
     color: var(--g);
-    margin-top: 10px
+    margin-top: 10px;
 }
 
-.story .b {
-    margin-top: 8px
+/* Botão da história: um para o celular, outro para o desktop */
+.story .btn-hist {
+    display: none;
 }
 
-/* método */
+.story .btn-hist-m {
+    display: block;
+    margin-top: 28px;
+}
+
+/* Bloco texto + botão embaixo da foto (só desktop) */
+.hist-cta {
+    display: none;
+}
+
+.hist-t {
+    font-family: var(--t);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1;
+    color: var(--w);
+    margin-bottom: 24px;
+}
+
+
+/* 10. MÉTODO M
+   ========================================================= */
 .m .lead {
     font-size: 18px;
-    margin: 26px 0 32px
+    margin: 26px 0 32px;
 }
 
 .pts {
     list-style: none;
     margin: 0 0 36px;
     padding: 0;
-    border-top: 1px solid #333
+    border-top: 1px solid #333;
 }
 
 .pts li {
+    display: flex;
+    gap: 18px;
     padding: 16px 0;
     border-bottom: 1px solid #333;
     font-size: 15px;
     color: var(--l);
-    display: flex;
-    gap: 18px
 }
 
 .pts li span {
     color: var(--g);
     font-size: 12px;
     letter-spacing: .2em;
-    padding-top: 3px
+    padding-top: 3px;
 }
 
+/* Logo grande do Método M (só aparece no desktop) */
 .bigm {
-    display: none
+    display: none;
 }
 
+.bigm img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+
+/* 11. CTA FINAL
+   ========================================================= */
 .cta h2 {
     font-size: clamp(54px, 17vw, 130px);
-    margin-bottom: 36px
+    margin-bottom: 36px;
 }
 
 .cta .row {
     display: grid;
-    gap: 12px
+    gap: 12px;
 }
 
+
+/* 12. FOOTER
+   ========================================================= */
 footer {
-    border-top: 1px solid #222;
-    padding: 40px 0
+    border-top: 1px solid var(--line);
+    padding: 40px 0;
 }
 
 .f {
     display: grid;
     gap: 16px;
     font-size: 13px;
-    color: var(--g)
+    color: var(--g);
 }
 
 .f a {
-    color: var(--l)
+    color: var(--l);
 }
 
+
+/* 13. BARRA FIXA DO CELULAR (DOCK)
+   ========================================================= */
 .dock {
     position: fixed;
     left: 0;
@@ -367,76 +544,236 @@ footer {
     background: var(--k);
     border-top: 1px solid #333;
     transform: translateY(110%);
-    transition: transform .4s ease
+    transition: transform .4s ease;
 }
 
 .dock.show {
-    transform: none
+    transform: none;
 }
 
 .dock .btn {
-    padding: 16px 6px
+    padding: 16px 6px;
 }
 
+
+/* 14. ANIMAÇÃO DE ENTRADA (.rv)
+   ========================================================= */
 .rv {
     opacity: 0;
     transform: translateX(90px);
-    transition: opacity 1s ease, transform 1s ease
+    transition: opacity 1s ease, transform 1s ease;
 }
 
 .rv.in {
     opacity: 1;
     transform: none;
-    transition: 0.8s
+    transition: .8s;
 }
 
+/* Botões que usam .rv: depois de aparecer, o hover volta a ser rápido */
 .btn.rv.in {
-    transition: 0.4s
+    transition: .4s;
 }
 
 
+/* 15. ACESSIBILIDADE
+   ========================================================= */
+:focus-visible {
+    outline: 2px solid var(--l);
+    outline-offset: 3px;
+}
 
-@media (prefers-reduced-motion:reduce) {
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
     .rv {
         opacity: 1;
         transform: none;
-        transition: none
-    }
-
-    html {
-        scroll-behavior: auto
+        transition: none;
     }
 
     .dock {
-        transition: none
+        transition: none;
     }
 }
 
-:focus-visible {
-    outline: 2px solid var(--l);
-    outline-offset: 3px
+
+/* 16. DESKTOP (min-width: 860px)
+   ========================================================= */
+@media (min-width: 860px) {
+
+    /* base */
+    :root {
+        --pad: clamp(32px, 5vw, 72px);
+    }
+
+    body {
+        font-size: 17px;
+        padding-bottom: 0;
+    }
+
+    section {
+        padding: 140px 0;
+    }
+
+    /* header */
+    .bar {
+        height: 68px;
+    }
+
+    .bar nav {
+        display: block;
+    }
+
+    .bar nav a {
+        font-size: 12px;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+        margin-right: 28px;
+    }
+
+    .bar .btn {
+        display: inline-block;
+        padding: 11px 20px;
+    }
+
+    /* hero */
+    .hero {
+        padding-bottom: 56px;
+    }
+
+    .hero-top {
+        min-height: 520px;
+    }
+
+    .hero .sub {
+        display: block;
+    }
+
+    .two {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border: 1px solid rgba(255, 255, 255, .4);
+    }
+
+    .two a {
+        padding: 28px;
+        border-bottom: 0;
+    }
+
+    .two a+a {
+        border-left: 1px solid rgba(255, 255, 255, .4);
+    }
+
+    .two a:hover {
+        background: var(--w);
+        color: var(--k);
+    }
+
+    .two a:hover small {
+        color: #333;
+    }
+
+    .two a:hover .ar {
+        transform: rotate(-35deg) scale(1.35);
+    }
+
+    /* citação */
+    .citacao {
+        padding: 72px 0;
+    }
+
+    .quote {
+        padding-top: 60px;
+    }
+
+    .quote::before {
+        font-size: 100px;
+    }
+
+    /* história */
+    .story {
+        grid-template-columns: 5fr 6fr;
+        gap: 96px;
+        align-items: stretch;
+    }
+
+    .story .a {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        /* foto em cima, bloco do botão embaixo */
+    }
+
+    .hist-cta {
+        display: block;
+    }
+
+    .hist-cta .eyebrow {
+        margin-bottom: 14px;
+    }
+
+    .story .btn-hist {
+        display: block;
+    }
+
+    .story .btn-hist-m {
+        display: none;
+    }
+
+    /* método */
+    .m {
+        display: grid;
+        grid-template-columns: 7fr 5fr;
+        gap: 96px;
+        align-items: end;
+    }
+
+    .m .btn {
+        display: inline-block;
+    }
+
+    .bigm {
+        display: block;
+        width: clamp(260px, 32vw, 420px);
+        margin-left: auto;
+    }
+
+    /* cta */
+    .cta .row {
+        display: flex;
+    }
+
+    .cta .btn {
+        display: inline-block;
+    }
+
+    /* footer */
+    .f {
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+    }
+
+    /* dock */
+    .dock {
+        display: none;
+    }
 }
 
-.hero-top {
-    position: relative;
-    min-height: 380px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end
-}
 
-.hero-text {
-    position: relative;
-    z-index: 2
-}
-
+/* 17. OPCIONAL: FOTO NO HERO
+   Só use se voltar a colocar <div class="hero-foto"> no HTML.
+   Se não for usar, pode apagar este bloco.
+   ========================================================= */
 .hero-foto {
     position: absolute;
     right: calc(var(--pad) * -1);
     bottom: 0;
     height: 105%;
     max-width: 72%;
-    z-index: 1
+    z-index: 1;
 }
 
 .hero-foto img {
@@ -444,147 +781,12 @@ footer {
     height: 70%;
     width: auto;
     object-fit: contain;
-    object-position: bottom right
+    object-position: bottom right;
 }
 
-.hero .sub {
-    display: none
-}
-
-@media (min-width:860px) {
-    .hero .sub {
-        display: block
-    }
-
-    .hero-top {
-        min-height: 520px
-    }
-
+@media (min-width: 860px) {
     .hero-foto {
         right: 0;
-        height: 100%
-    }
-
-    :root {
-        --pad: clamp(32px, 5vw, 72px)
-    }
-
-    body {
-        font-size: 17px;
-        padding-bottom: 0
-    }
-
-    section {
-        padding: 140px 0
-    }
-
-    .bar {
-        height: 68px
-    }
-
-    .bar nav {
-        display: block
-    }
-
-    .bar nav a {
-        font-size: 12px;
-        letter-spacing: .18em;
-        text-transform: uppercase;
-        margin-right: 28px
-    }
-
-    .bar .btn {
-        display: inline-block;
-        padding: 11px 20px
-    }
-
-    header {
-        position: fixed
-    }
-
-    .hero {
-        padding-bottom: 56px
-    }
-
-    .two {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0;
-        border: 1px solid rgba(255, 255, 255, .4)
-    }
-
-    .two a {
-        padding: 28px;
-        border-bottom: 1px solid rgba(255, 255, 255, .4)
-    }
-
-    .two a+a {
-        border-left: 1px solid rgba(255, 255, 255, .4)
-    }
-
-    .two a:hover {
-        transition: 0.4s;
-        background: var(--w);
-        color: var(--k)
-    }
-
-    .two a:hover small {
-        color: #333;
-    }
-
-    .two .ar {
-        transition: 0.3s;
-        color: var(--w);
-    }
-
-    .two a:hover .ar {
-        display: inline-block;
-        color: #333;
-        transform: rotate(-35deg);
-        font-size: 30px;
-        font-weight: bolder;
-    }
-
-    .story {
-        grid-template-columns: 5fr 6fr;
-        gap: 96px;
-        align-items: start
-    }
-
-    .m {
-        display: grid;
-        grid-template-columns: 7fr 5fr;
-        gap: 96px;
-        align-items: end
-    }
-
-    .m .btn {
-        display: inline-block
-    }
-
-    .bigm {
-        display: block;
-        font-family: var(--t);
-        font-weight: 800;
-        font-size: clamp(220px, 28vw, 380px);
-        line-height: .75;
-        text-align: right
-    }
-
-    .cta .row {
-        display: flex
-    }
-
-    .cta .btn {
-        display: inline-block
-    }
-
-    .f {
-        grid-template-columns: 1fr auto auto;
-        align-items: center
-    }
-
-    .dock {
-        display: none
+        height: 100%;
     }
 }
